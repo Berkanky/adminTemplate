@@ -1,44 +1,5 @@
 <template>
-      <!-- Sidebar -->
-      <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" v-if="this.store.visible">
-      <div class="text-center">
-        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 170px;"
-          alt="Avatar" />
 
-        <div class="mt-2">
-          bekoKymaz@gmail.com
-        </div>
-      </div>
-    <div class="position-sticky">
-      <div class="list-group list-group-flush mx-3 mt-4 listGroup">
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
-          <i class="fas fa-chart-area fa-fw me-3"></i><span>Webiste traffic</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-lock fa-fw me-3"></i><span>Password</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-chart-line fa-fw me-3"></i><span>Analytics</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span>
-        </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-globe fa-fw me-3"></i><span>International</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-building fa-fw me-3"></i><span>Partners</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-calendar fa-fw me-3"></i><span>Calendar</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-users fa-fw me-3"></i><span>Users</span></a>
-<!--         <a v-on:click="this.store.visible =! this.store.visible" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="fas fa-money-bill fa-fw me-3"></i><span>Close Menu</span></a> -->
-      </div>
-    </div>
-  </nav>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <!-- Container wrapper -->
   <div class="container-fluid">
@@ -52,10 +13,11 @@
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" v-on:click="this.store.visible =! this.store.visible">
-        <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="15"
-          alt="MDB Logo" loading="lazy" />
-      </a>
+      <button class="btn btn-outline-secondary" type="button" v-on:click="this.store.visible =! this.store.visible">
+        <span class="material-symbols-outlined">
+          menu
+        </span>
+      </button>
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -124,66 +86,144 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
+      <!-- Sidebar -->
+      <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-dark text-white" v-if="this.store.visible">
+<!--         <div class="" style="margin-left:20px;">
+          <button type="button" class="btn btn-outline-secondary">          
+            <i class="material-symbols-outlined">
+              arrow_left
+            </i>
+          </button>
+        </div> -->
+      <div class="text-center">
+        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 170px;"
+          alt="Avatar" />
 
-<div class="bg-light row" style="height: 100vh;">
-  <div class="col-12 col-md-9 col-sm-9">
+        <div class="mt-2">
+          bekoKymaz@gmail.com
+        </div>
+      </div>
+      <div style="border:0.1px solid rgb(133, 133, 133);" class="mt-2"></div>
+    <div  class="position-sticky ">
+      <div class="list-group list-group-flush mx-3 mt-4 listGroup">
+        <a 
+          style="border-radius:4px;"
+          :class="this.checkMouseOnData(data) ? 'bg-white text-dark' : 'bg-dark text-white'"
+          v-on:mouseover="mouseOn(data)"
+          v-on:mouseleave="mouseLeave(data)"
+          v-for="(data,key) in this.sideBarOptions" :key="key"
+          href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+          <div class="row">
+            <i class="material-symbols-outlined fa-fw me-3 col-2">
+            {{ data.icon }}
+            </i><span class="col">{{ data.label }}</span>
+            <i class="material-symbols-outlined col-2">
+              arrow_right
+            </i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </nav>
+<div
+  class="bg-light" style="height: 100vh;">
+  <div class="row">
+    <div class="col-12 col-md-9 col-sm-9">
     <div class="row">
-      <div class="col-3">asdfa</div>
-      <div class="col-3">asdfa</div>
-      <div class="col-3">asdfa</div>
+      <div class="input-group mb-3">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon1">
+        <i class="material-symbols-outlined">
+          search
+        </i>
+      </button>
+      <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-3" v-for="(data,key) in 4" :key="key">
+        <div id="chart">
+          <apexchart type="area" height="300" :options="chartOptions" :series="series"></apexchart>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <pieGraph />
+      </div>
+      <div class="col-6">
+        <barGraph />
+      </div>
     </div>
   </div>
   <div class="col-3">
     <div>
-      <div class="card bg-light text-dark text-center">
+      <div 
+        style="border: none;"
+        class="card bg-light text-dark text-center p-3">
         <div class="card-body row">
           <div class="col-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+<!--             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
               <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
               <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-            </svg>
+            </svg> -->
+            <span 
+              style="color:rgb(117, 115, 115);"
+              class="material-symbols-outlined">
+              calendar_month
+            </span>
           </div>
           <div class="col text-left" style="text-weight:bold;">
             Calendar
           </div>
           <div class="col-4 text-right">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-              <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-              <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-            </svg>
+            <span 
+              style="color:rgb(117, 115, 115);"
+              class="material-symbols-outlined">
+              settings
+            </span>
           </div>
         </div>
       </div>
     </div>
     <div>
-      <div class="card" style="border:0px ;">
-<!--         <ul class="list-group list-group-light">
-          <li 
-          v-for="(data,key) in 19" :key="key" 
-            class="list-group-item">An item</li>
-        </ul> -->
+      <div class="card" style="border:0px;">
         <ol 
-          class="list-group list-group-light list-group-numbered">
+          style="border-radius:7px;"
+          class="list-group list-group-light">
           <li 
+            style="border:none;background-color:rgb(243, 243, 243);"
             v-for="(data,key) in 10" :key="key"
-            class="list-group-item d-flex justify-content-between align-items-start">
-            <div class="ms-2 me-auto">
-              <div class="fw-bold">Subheading</div>
-              Content for list item
+            class="list-group-item d-flex justify-content-between align-items-start p-3">
+            <div>
+              <span style="color: rgb(180, 180, 180);" class="material-symbols-outlined">
+                expand_circle_right
+              </span>
             </div>
-            <span class="badge badge-primary rounded-pill">14</span>
+            <div class="ms-2 me-auto">
+              <div class="fw-bold" style="color:rgb(143, 141, 141);">Subheading</div>
+              <!-- Content for list item -->
+            </div>
+            <span class="badge badge-primary rounded-pill"></span>
           </li>
         </ol>
       </div>
     </div>
   </div>
+  </div>
+
 </div>
 </template>
 
 <script>
+import barGraph from "../components/barGraph.vue";
+import pieGraph from "../components/pieGraph.vue";
+import VueApexCharts from "vue3-apexcharts";
 import { useCounterStore } from '../stores/store';
 export default {
   components:{
+    apexchart: VueApexCharts,
+    pieGraph,
+    barGraph
   },
   setup(){
     const store = useCounterStore()
@@ -193,11 +233,53 @@ export default {
   },
   data:function(){
     return{
-
-    }
+      sideBarOptions:[
+        {id:1,label:'Main Dashboard',icon:'analytics'},
+        {id:2,label:'Profile',icon:'person'},
+        {id:3,label:'Settings',icon:'settings'}
+      ],
+      mouseOnOption:{},
+      series: [{
+            name: 'series1',
+            data: [31, 40, 28, 51, 42, 109, 100]
+          }, {
+            name: 'series2',
+            data: [11, 32, 45, 32, 34, 52, 41]
+          }],
+          chartOptions: {
+            chart: {
+              height: 350,
+              type: 'area'
+            },
+            dataLabels: {
+              enabled: false
+            },
+            stroke: {
+              curve: 'smooth'
+            },
+            xaxis: {
+              type: 'datetime',
+              categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+            },
+            tooltip: {
+              x: {
+                format: 'dd/MM/yy HH:mm'
+              },
+            },
+          },
+      }
   },
   methods:{
-
+    checkMouseOnData(data){
+      const check = this.mouseOnOption.id === data.id ? true : false
+      return check
+    },
+    mouseOn(data){
+      this.mouseOnOption = data
+    },
+    mouseLeave(data){
+      this.mouseOnOption = {}
+    }
   },
   created(){
 

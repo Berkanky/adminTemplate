@@ -8,7 +8,7 @@
     class="container-fluid bg-danger" style="height:100vh;">
       <router-view></router-view> 
   </div>  -->
- <div class="container-fluid">
+ <div class="myApp container-fluid">
   <router-view ></router-view>
  </div>
 </template>
@@ -92,7 +92,15 @@ export default {
 
 <style>
   .myApp{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto Mono', monospace;
     height: 100vh;
   }
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
 </style>

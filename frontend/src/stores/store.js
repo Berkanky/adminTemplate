@@ -11,5 +11,6 @@ export const useCounterStore = defineStore('counter', {
   getters: {
   },
   actions: {
+    //fa-fw me-3
   },
 })
